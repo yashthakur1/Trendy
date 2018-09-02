@@ -38,7 +38,7 @@ public class ExploraApp extends Application {
                 .build();
 
         CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath(Fonts.PACIFICO)
+                .setDefaultFontPath(Fonts.BANGERS)
                 .setFontAttrId(R.attr.fontPath)
                 .build()
         );
