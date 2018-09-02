@@ -11,11 +11,18 @@ public interface HomeContract {
     interface View {
         void showCatalog(ResponseData catalogData);
 
+        void setUpBestSellers(ResponseData catalogData);
+
+        void setUpSocialTrend(ResponseData catalogData);
+
+        void setUpMostViewed(ResponseData catalogData);
+
         void showError(String message);
 
         void showComplete();
 
         void showLoader();
+
         void hideLoader();
 
 

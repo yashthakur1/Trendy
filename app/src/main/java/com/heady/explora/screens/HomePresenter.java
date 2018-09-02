@@ -1,7 +1,11 @@
 package com.heady.explora.screens;
 
 import com.heady.explora.data.ApiService;
+import com.heady.explora.screens.models.Category;
 import com.heady.explora.screens.models.ResponseData;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 import javax.inject.Inject;
 
@@ -47,7 +51,17 @@ public class HomePresenter implements HomeContract.Presenter {
                     @Override
                     public void onNext(ResponseData catalogData) {
                         mView.showCatalog(catalogData);
+                        mView.setUpSocialTrend(catalogData);
+                        mView.setUpMostViewed(catalogData);
+                        mView.setUpBestSellers(catalogData);
                     }
                 });
+    }
+
+
+    private void sortTheCatalog(ResponseData catalogData) {
+        ArrayList<Category> categoriesWithChild = new ArrayList<>();
+        
+
     }
 }

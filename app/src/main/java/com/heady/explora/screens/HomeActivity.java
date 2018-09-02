@@ -12,6 +12,7 @@ import com.heady.explora.R;
 import com.heady.explora.base.BaseActivity;
 import com.heady.explora.base.ExploraApp;
 import com.heady.explora.screens.adapters.ExploreAdapter;
+import com.heady.explora.screens.adapters.ProductBlockAdapter;
 import com.heady.explora.screens.models.ResponseData;
 import com.orhanobut.logger.Logger;
 
@@ -26,6 +27,15 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     @BindView(R.id.rvExplore)
     RecyclerView rvExplore;
+
+    @BindView(R.id.rvSocial)
+    RecyclerView rvSocial;
+
+    @BindView(R.id.rvSeller)
+    RecyclerView rvSeller;
+
+    @BindView(R.id.rvMostViews)
+    RecyclerView rvMostViews;
 
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
@@ -50,8 +60,44 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
         Logger.json(new Gson().toJson(catalogData));
 
         ExploreAdapter exploreAdapter = new ExploreAdapter(context, catalogData.getCategories());
-        rvExplore.setLayoutManager(new GridLayoutManager(this, 2));
+        rvExplore.setLayoutManager(new GridLayoutManager(this, 2) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
         rvExplore.setAdapter(exploreAdapter);
+        exploreAdapter.listener = new ExploreAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View v, int position) {
+                Logger.d("POSITION  :  " + position);
+            }
+        };
+
+    }
+
+    @Override
+    public void setUpBestSellers(ResponseData catalogData) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, catalogData.getCategories());
+        rvSeller.setLayoutManager(linearLayoutManager);
+        rvSeller.setAdapter(exploreAdapter);
+    }
+
+    @Override
+    public void setUpSocialTrend(ResponseData catalogData) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, catalogData.getCategories());
+        rvSocial.setLayoutManager(linearLayoutManager);
+        rvSocial.setAdapter(exploreAdapter);
+    }
+
+    @Override
+    public void setUpMostViewed(ResponseData catalogData) {
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, catalogData.getCategories());
+        rvMostViews.setLayoutManager(linearLayoutManager);
+        rvMostViews.setAdapter(exploreAdapter);
     }
 
     @Override
