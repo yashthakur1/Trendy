@@ -133,8 +133,8 @@ public class HomePresenter implements HomeContract.Presenter {
         }
 
         mostViewed = catalogData.getRankings().get(0).getProducts();
-        mostShared = catalogData.getRankings().get(1).getProducts();
-        bestSeller = catalogData.getRankings().get(2).getProducts();
+        bestSeller = catalogData.getRankings().get(1).getProducts();
+        mostShared = catalogData.getRankings().get(2).getProducts();
         Collections.sort(mostViewed);
         Collections.sort(mostShared, new Comparator<Product>() {
             @Override

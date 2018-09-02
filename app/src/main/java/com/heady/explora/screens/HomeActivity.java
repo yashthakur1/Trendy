@@ -109,8 +109,8 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     public void setUpCategorisedData(CategorisedRatings categorisedData) {
         this.categorisedRatings = categorisedData;
         setUpMostViewed(categorisedRatings.getMostViewed());
-        setUpBestSellers(categorisedRatings.getMostViewed());
-        setUpSocialTrend(categorisedRatings.getMostViewed());
+        setUpBestSellers(categorisedRatings.getBestSeller());
+        setUpSocialTrend(categorisedRatings.getMostShared());
     }
 
     @Override
