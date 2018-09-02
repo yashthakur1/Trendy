@@ -15,24 +15,25 @@ public class Category implements Parcelable {
     private int id = 0;
     private String name = "";
     private ArrayList<Product> products = new ArrayList<>();
-    private List<Integer> child_categories = new ArrayList<Integer>();
+    private List<Integer> child_categories = new ArrayList<>();
+    private List<Category> custom_categories = new ArrayList<>();
 
     public Category() {
     }
 
-    public Category(int id, String name, ArrayList<Product> products, ArrayList<Integer> child_categories) {
+    public Category(int id, String name, ArrayList<Product> products, List<Integer> child_categories, List<Category> custom_categories) {
         this.id = id;
         this.name = name;
         this.products = products;
         this.child_categories = child_categories;
+        this.custom_categories = custom_categories;
     }
 
     protected Category(Parcel in) {
         id = in.readInt();
         name = in.readString();
         products = in.createTypedArrayList(Product.CREATOR);
-        child_categories = new ArrayList<>();
-        in.readList(child_categories, Integer.class.getClassLoader());
+        custom_categories = in.createTypedArrayList(Category.CREATOR);
     }
 
     @Override
@@ -40,8 +41,7 @@ public class Category implements Parcelable {
         dest.writeInt(id);
         dest.writeString(name);
         dest.writeTypedList(products);
-        dest.writeList(child_categories);
-
+        dest.writeTypedList(custom_categories);
     }
 
     @Override
@@ -91,5 +91,13 @@ public class Category implements Parcelable {
 
     public void setChild_categories(List<Integer> child_categories) {
         this.child_categories = child_categories;
+    }
+
+    public List<Category> getCustom_categories() {
+        return custom_categories;
+    }
+
+    public void setCustom_categories(List<Category> custom_categories) {
+        this.custom_categories = custom_categories;
     }
 }

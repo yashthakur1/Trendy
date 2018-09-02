@@ -55,8 +55,7 @@ public class ExploreAdapter extends RecyclerView.Adapter<ExploreAdapter.ExploreV
 
     @Override
     public int getItemCount() {
-        return 4;
-//        return categories != null ? categories.size() : 0;
+        return categories != null ? categories.size() : 0;
     }
 
     class ExploreViewHolder extends RecyclerView.ViewHolder {

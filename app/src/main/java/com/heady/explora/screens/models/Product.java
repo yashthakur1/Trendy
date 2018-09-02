@@ -2,14 +2,16 @@ package com.heady.explora.screens.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 /**
  * Created by yashthakur on 26/08/18.
  */
 
-public class Product implements Parcelable {
+public class Product implements Parcelable, Comparable<Product> {
 
     private int id = 0;
     private int order_count = 0;
@@ -138,4 +140,17 @@ public class Product implements Parcelable {
     public void setTax(Tax tax) {
         this.tax = tax;
     }
+
+
+    @Override
+    public int compareTo(@NonNull Product o) {
+        int viewCount = o.getView_count();
+        /* For descending order*/
+        return viewCount - this.view_count;
+    }
+
+
+
+
+
 }

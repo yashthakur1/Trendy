@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.heady.explora.R;
 import com.heady.explora.screens.models.Category;
+import com.heady.explora.screens.models.Product;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -21,11 +22,11 @@ import java.util.ArrayList;
 public class ProductBlockAdapter extends RecyclerView.Adapter<ProductBlockAdapter.ExploreViewHolder> {
 
     Context context;
-    private ArrayList<Category> categories;
+    private ArrayList<Product> products;
 
-    public ProductBlockAdapter(Context context, ArrayList<Category> categories) {
+    public ProductBlockAdapter(Context context, ArrayList<Product> products) {
         this.context = context;
-        this.categories = categories;
+        this.products = products;
     }
 
     @Override
@@ -38,15 +39,15 @@ public class ProductBlockAdapter extends RecyclerView.Adapter<ProductBlockAdapte
     @Override
     public void onBindViewHolder(ProductBlockAdapter.ExploreViewHolder viewHolder, int position) {
 
-        Category category = categories.get(position);
-        viewHolder.tvCategory.setText(category.getName());
+        Product product = products.get(position);
+        viewHolder.tvCategory.setText(product.getName());
         Picasso.get().load("https://picsum.photos/400/300?image=" + position + 20).fit().into(viewHolder.ivBackground);
 
     }
 
     @Override
     public int getItemCount() {
-        return categories != null ? categories.size() : 0;
+        return products != null ? products.size() : 0;
     }
 
     class ExploreViewHolder extends RecyclerView.ViewHolder {

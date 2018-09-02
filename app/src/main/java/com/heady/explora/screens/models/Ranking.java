@@ -2,6 +2,7 @@ package com.heady.explora.screens.models;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 
 import java.util.ArrayList;
 
@@ -65,4 +66,5 @@ public class Ranking implements Parcelable{
     public void setProducts(ArrayList<Product> products) {
         this.products = products;
     }
+
 }

@@ -13,8 +13,14 @@ import com.heady.explora.base.BaseActivity;
 import com.heady.explora.base.ExploraApp;
 import com.heady.explora.screens.adapters.ExploreAdapter;
 import com.heady.explora.screens.adapters.ProductBlockAdapter;
+import com.heady.explora.screens.models.CategorisedRatings;
+import com.heady.explora.screens.models.Category;
+import com.heady.explora.screens.models.Product;
 import com.heady.explora.screens.models.ResponseData;
 import com.orhanobut.logger.Logger;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 import javax.inject.Inject;
 
@@ -40,26 +46,25 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
+    CategorisedRatings categorisedRatings = new CategorisedRatings();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-
         DaggerHomeComponent.builder()
                 .netComponent(((ExploraApp) getApplicationContext()).getNetComponent())
                 .homeModule(new HomeModule(this))
                 .build().inject(this);
-
         homePresenter.getCatalog();
     }
 
 
     @Override
-    public void showCatalog(ResponseData catalogData) {
+    public void showCatalog(ArrayList<Category> sortedCatalog) {
         Logger.d("API callback");
-        Logger.json(new Gson().toJson(catalogData));
 
-        ExploreAdapter exploreAdapter = new ExploreAdapter(context, catalogData.getCategories());
+        ExploreAdapter exploreAdapter = new ExploreAdapter(context, sortedCatalog);
         rvExplore.setLayoutManager(new GridLayoutManager(this, 2) {
             @Override
             public boolean canScrollVertically() {
@@ -76,28 +81,36 @@ public class HomeActivity extends BaseActivity implements HomeContract.View {
 
     }
 
-    @Override
-    public void setUpBestSellers(ResponseData catalogData) {
+
+    public void setUpBestSellers(ArrayList<Product> mostSold) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, catalogData.getCategories());
+        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, mostSold);
         rvSeller.setLayoutManager(linearLayoutManager);
         rvSeller.setAdapter(exploreAdapter);
     }
 
-    @Override
-    public void setUpSocialTrend(ResponseData catalogData) {
+
+    public void setUpSocialTrend(ArrayList<Product> mostShared) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, catalogData.getCategories());
+        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, mostShared);
         rvSocial.setLayoutManager(linearLayoutManager);
         rvSocial.setAdapter(exploreAdapter);
     }
 
-    @Override
-    public void setUpMostViewed(ResponseData catalogData) {
+
+    public void setUpMostViewed(ArrayList<Product> mostViewed) {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
-        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, catalogData.getCategories());
+        ProductBlockAdapter exploreAdapter = new ProductBlockAdapter(context, mostViewed);
         rvMostViews.setLayoutManager(linearLayoutManager);
         rvMostViews.setAdapter(exploreAdapter);
+    }
+
+    @Override
+    public void setUpCategorisedData(CategorisedRatings categorisedData) {
+        this.categorisedRatings = categorisedData;
+        setUpMostViewed(categorisedRatings.getMostViewed());
+        setUpBestSellers(categorisedRatings.getMostViewed());
+        setUpSocialTrend(categorisedRatings.getMostViewed());
     }
 
     @Override

@@ -1,6 +1,10 @@
 package com.heady.explora.screens;
 
+import com.heady.explora.screens.models.CategorisedRatings;
+import com.heady.explora.screens.models.Category;
 import com.heady.explora.screens.models.ResponseData;
+
+import java.util.ArrayList;
 
 /**
  * Created by yashthakur on 26/08/18.
@@ -9,13 +13,10 @@ import com.heady.explora.screens.models.ResponseData;
 public interface HomeContract {
 
     interface View {
-        void showCatalog(ResponseData catalogData);
 
-        void setUpBestSellers(ResponseData catalogData);
+        void showCatalog(ArrayList<Category> sortedCatalog);
 
-        void setUpSocialTrend(ResponseData catalogData);
-
-        void setUpMostViewed(ResponseData catalogData);
+        void setUpCategorisedData(CategorisedRatings categorisedData);
 
         void showError(String message);
 

@@ -3,8 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Explora.iml" filepath="$PROJECT_DIR$/Explora.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Trendy.iml" filepath="$PROJECT_DIR$/Trendy.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/exploraApp.iml" filepath="$PROJECT_DIR$/exploraApp.iml" />
     </modules>
   </component>
 </project>
