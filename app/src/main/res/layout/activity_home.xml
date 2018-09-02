@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_grey"
+    android:padding="15dp"
+    tools:context="com.heady.explora.screens.HomeActivity">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tvExploreLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Explore"
+                android:textColor="@color/text"
+                android:textSize="35sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleLarge"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvExploreLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:visibility="visible"
+                android:indeterminate="true"
+                android:indeterminateTintMode="src_atop"
+                android:indeterminateTint="@color/dark_green"/>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvExplore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvExploreLabel" />
+
+            <RelativeLayout
+                android:id="@+id/rlShowMore"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rvExplore">
+
+                <TextView
+                    android:id="@+id/tvShowMore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="Show More"
+                    android:textColor="@color/text"
+                    android:textSize="14sp" />
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_toRightOf="@+id/tvShowMore"
+                    android:padding="4dp"
+                    android:src="@android:drawable/btn_star" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tvSocialLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Social Trend"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rlShowMore" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                android:padding="4dp"
+                android:src="@android:drawable/btn_star"
+                app:layout_constraintLeft_toRightOf="@+id/tvSocialLabel"
+                app:layout_constraintTop_toBottomOf="@+id/rlShowMore" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSocial"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvSocialLabel" />
+
+            <TextView
+                android:id="@+id/tvBestSellers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Best sellers"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rvSocial" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                android:padding="4dp"
+                android:src="@android:drawable/btn_star"
+                app:layout_constraintLeft_toRightOf="@+id/tvBestSellers"
+                app:layout_constraintTop_toBottomOf="@+id/rvSocial" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvSeller"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvBestSellers" />
+
+            <TextView
+                android:id="@+id/tvMostViewsLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Most viewed"
+                android:textColor="@color/text"
+                android:textSize="20sp"
+                app:layout_constraintTop_toBottomOf="@+id/rvSeller" />
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="12dp"
+                android:padding="4dp"
+                android:src="@android:drawable/btn_star"
+                app:layout_constraintLeft_toRightOf="@+id/tvMostViewsLabel"
+                app:layout_constraintTop_toBottomOf="@+id/rvSeller" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rvMostViews"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layout_constraintTop_toBottomOf="@+id/tvMostViewsLabel" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </ScrollView>
+
+</android.support.constraint.ConstraintLayout>
